@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeOS | Your Digital Life Infrastructure</title>
+    <meta name="description" content="Manage your life, vault, family, and expenses in one secure place.">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="/pwa/manifest.json">
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animations.css">
+
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Life<span>OS</span></div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="/login.html" class="btn-secondary">Login</a>
+            <a href="/signup.html" class="btn-primary">Get Started</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Control your life, <br>from one single OS.</h1>
+            <p>Secure Vault • Family Hub • Expense Tracker • Memories</p>
+            <div class="hero-btns">
+                <a href="/signup.html" class="btn-main">Start Your Journey</a>
+                <a href="#demo" class="btn-outline">Watch Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <!-- Feature cards will go here -->
+    </section>
+
+    <!-- Global Scripts -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/pwa.js"></script>
+    <script>
+        // Check if user is already logged in
+        window.onload = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                window.location.href = '/dashboard.html';
+            }
+        };
+    </script>
+</body>
+</html>

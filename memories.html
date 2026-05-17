@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memories | LifeOS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Life<span>OS</span></div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="/memories.html" class="nav-item active">Memories</a>
+            <a href="/vault.html" class="nav-item">Vault</a>
+            <a href="/family.html" class="nav-item">Family</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Life Memories</h1>
+            <button class="btn-primary" id="add-memory-btn">+ New Moment</button>
+        </header>
+
+        <!-- Memory Stats & Filters -->
+        <section class="memory-filters">
+            <p><span id="memory-count">0</span> Moments Captured</p>
+            <div class="filter-group">
+                <button class="btn-chip active">All</button>
+                <button class="btn-chip">Favorites</button>
+                <button class="btn-chip">Travel</button>
+                <button class="btn-chip">Family</button>
+            </div>
+        </section>
+
+        <!-- Memories Grid (Masonry Style) -->
+        <section class="memories-grid" id="memories-container">
+            <!-- Skeleton Loader -->
+            <div class="memory-card-skeleton"></div>
+            <div class="memory-card-skeleton"></div>
+            <div class="memory-card-skeleton"></div>
+        </section>
+    </main>
+
+    <!-- Add Memory Modal -->
+    <div id="memory-modal" class="modal">
+        <div class="modal-content">
+            <h3>Capture a Moment</h3>
+            <form id="memory-form">
+                <div class="upload-area" id="drop-zone">
+                    <input type="file" id="memory-upload" accept="image/*" hidden>
+                    <div class="upload-placeholder" onclick="document.getElementById('memory-upload').click()">
+                        <p>Click to upload or drag & drop</p>
+                        <span>Only high-quality images supported</span>
+                    </div>
+                    <div id="image-preview" class="hidden"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>Caption</label>
+                    <input type="text" id="memory-caption" placeholder="Describe this moment..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="memory-category">
+                        <option value="general">General</option>
+                        <option value="travel">Travel</option>
+                        <option value="family">Family</option>
+                        <option value="celebration">Celebration</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-outline" id="close-memory-modal">Cancel</button>
+                    <button type="submit" class="btn-primary" id="save-memory-btn">Save to Cloud</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Full Screen View Modal -->
+    <div id="view-modal" class="modal full-view">
+        <span class="close-view">&times;</span>
+        <img class="modal-content-img" id="full-image">
+        <div id="caption-text"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/api.js"></script> <!-- For R2 Upload Workers -->
+    <script src="/js/memories.js"></script>
+</body>
+</html>

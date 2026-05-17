@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Hub | LifeOS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Life<span>OS</span></div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="/family.html" class="nav-item active">Family Hub</a>
+            <a href="/reminders.html" class="nav-item">Reminders</a>
+            <a href="/vault.html" class="nav-item">Vault</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Family Hub</h1>
+            <button class="btn-sos" id="sos-btn">🚨 EMERGENCY SOS</button>
+        </header>
+
+        <section class="family-grid">
+            <!-- Family Safety Status Card -->
+            <div class="card status-card">
+                <h3>Family Safety Status</h3>
+                <div id="safety-indicator" class="safe">All members are safe</div>
+                <p class="hint">Last updated: Just now</p>
+            </div>
+
+            <!-- Add Member Section -->
+            <div class="card add-member-card">
+                <h3>Add Family Member</h3>
+                <form id="add-member-form">
+                    <input type="email" id="member-email" placeholder="Member's Email" required>
+                    <button type="submit" class="btn-small">Send Invite</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Family Members List -->
+        <h2 class="section-title">Connected Members</h2>
+        <div class="members-list" id="members-container">
+            <!-- Dynamically loaded via family.js -->
+            <div class="member-card skeleton">Loading members...</div>
+        </div>
+
+        <!-- Shared Alerts Section -->
+        <div class="card alerts-card">
+            <h3>Recent Family Alerts</h3>
+            <ul id="family-alerts-list">
+                <li>No recent alerts</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- SOS Confirmation Modal -->
+    <div id="sos-modal" class="modal">
+        <div class="modal-content danger-zone">
+            <h2>Send SOS Alert?</h2>
+            <p>This will notify all family members with your current location.</p>
+            <div class="modal-actions">
+                <button class="btn-outline" id="cancel-sos">Cancel</button>
+                <button class="btn-danger" id="confirm-sos">Confirm & Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/family.js"></script>
+</body>
+</html>

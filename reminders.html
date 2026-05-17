@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminders | LifeOS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Life<span>OS</span></div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="/vault.html" class="nav-item">Vault</a>
+            <a href="/reminders.html" class="nav-item active">Reminders</a>
+            <a href="/family.html" class="nav-item">Family</a>
+            <a href="/expenses.html" class="nav-item">Expenses</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Daily Reminders</h1>
+            <button class="btn-primary" id="add-reminder-btn">+ New Reminder</button>
+        </header>
+
+        <section class="reminder-section">
+            <!-- Add Reminder Modal/Form (Hidden by default) -->
+            <div id="reminder-modal" class="modal">
+                <div class="modal-content">
+                    <h3>Set New Reminder</h3>
+                    <form id="reminder-form">
+                        <input type="text" id="rem-title" placeholder="Reminder Title (e.g. Pay Rent)" required>
+                        <input type="datetime-local" id="rem-time" required>
+                        <select id="rem-priority">
+                            <option value="low">Low Priority</option>
+                            <option value="medium" selected>Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-outline" id="close-modal">Cancel</button>
+                            <button type="submit" class="btn-primary">Save Reminder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Reminders List -->
+            <div class="reminder-grid" id="reminders-list">
+                <!-- Dynamic Content from reminders.js -->
+                <p class="loading-text">Fetching your schedule...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/reminders.js"></script>
+</body>
+</html>

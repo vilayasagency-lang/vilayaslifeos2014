@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Vault | LifeOS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/vault.css"> <!-- Specific styling for vault -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Life<span>OS</span></div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="/vault.html" class="nav-item active">Secure Vault</a>
+            <a href="/reminders.html" class="nav-item">Reminders</a>
+            <a href="/expenses.html" class="nav-item">Expenses</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="logout-btn" class="btn-logout">Logout</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Secure Vault</h1>
+            <div class="vault-actions">
+                <input type="file" id="vault-upload-input" hidden multiple>
+                <button class="btn-primary" onclick="document.getElementById('vault-upload-input').click()">
+                    <span>↑</span> Upload Document
+                </button>
+            </div>
+        </header>
+
+        <!-- Storage Info -->
+        <section class="storage-info">
+            <div class="storage-bar-container">
+                <p>Storage Used: <span id="storage-used">0 MB</span> of 500 MB</p>
+                <div class="progress-bar">
+                    <div id="storage-progress" class="progress" style="width: 0%"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filters -->
+        <section class="vault-filters">
+            <input type="text" id="vault-search" placeholder="Search files...">
+            <select id="vault-category-filter">
+                <option value="all">All Files</option>
+                <option value="id">Identity Docs</option>
+                <option value="finance">Finance</option>
+                <option value="medical">Medical</option>
+                <option value="other">Others</option>
+            </select>
+        </section>
+
+        <!-- Files Display -->
+        <section class="vault-grid" id="vault-files-container">
+            <!-- Skeleton Loader -->
+            <div class="file-card-skeleton"></div>
+            <div class="file-card-skeleton"></div>
+            <div class="file-card-skeleton"></div>
+        </section>
+    </main>
+
+    <!-- File Detail Modal -->
+    <div id="file-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-file-name">Document.pdf</h3>
+            <div class="file-preview" id="file-preview-area">
+                <!-- Preview will be generated here -->
+                <p>No preview available</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-outline" id="delete-file-btn">Delete</button>
+                <button class="btn-primary" id="download-file-btn">Download</button>
+                <button class="btn-secondary" id="close-vault-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/api.js"></script> <!-- Handles Cloudflare Worker calls -->
+    <script src="/js/vault.js"></script>
+</body>
+</html>

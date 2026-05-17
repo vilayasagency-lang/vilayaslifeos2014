@@ -1,0 +1,36 @@
+{
+  "name": "LifeOS - Digital Life Infrastructure",
+  "short_name": "LifeOS",
+  "description": "Enterprise-grade life management, vault, and family safety platform.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["lifestyle", "productivity", "finance"],
+  "shortcuts": [
+    {
+      "name": "Open Vault",
+      "url": "/vault.html",
+      "icons": [{ "src": "/assets/icons/vault-shortcut.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Add Expense",
+      "url": "/expenses.html",
+      "icons": [{ "src": "/assets/icons/expense-shortcut.png", "sizes": "96x96" }]
+    }
+  ]
+}

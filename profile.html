@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings | LifeOS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar (Same as Dashboard for consistency) -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Life<span>OS</span></div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="/vault.html" class="nav-item">Vault</a>
+            <a href="/profile.html" class="nav-item active">Profile</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="logout-btn" class="btn-logout">Logout</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Profile Settings</h1>
+        </header>
+
+        <section class="profile-container">
+            <div class="card profile-card">
+                <div class="avatar-section">
+                    <img id="profile-avatar" src="/assets/images/default-avatar.png" alt="Avatar" class="profile-img">
+                    <input type="file" id="avatar-input" accept="image/*" hidden>
+                    <button class="btn-small" onclick="document.getElementById('avatar-input').click()">Change Photo</button>
+                    <p class="hint">Stored securely on Cloudflare R2</p>
+                </div>
+
+                <form id="profile-form" class="profile-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="display-name" placeholder="Loading...">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="display-email" disabled>
+                        <span class="hint">Email cannot be changed</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Subscription Plan</label>
+                        <div class="plan-badge" id="plan-type">Free Plan</div>
+                        <a href="/subscription.html" class="link-text">Upgrade Plan</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </form>
+            </div>
+
+            <div class="card security-card">
+                <h3>Security</h3>
+                <button class="btn-outline" id="reset-password-btn">Send Password Reset Email</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/profile.js"></script>
+</body>
+</html>

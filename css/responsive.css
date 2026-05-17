@@ -1,0 +1,106 @@
+/* --- Tablets & Small Laptops (under 1024px) --- */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 80px;
+    }
+    .sidebar-logo span, .nav-item span, .sidebar-footer span {
+        display: none; /* Icon-only sidebar */
+    }
+    .main-content {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+    }
+    .nav-item i {
+        margin-right: 0;
+        font-size: 1.5rem;
+    }
+}
+
+/* --- Mobile Devices (under 768px) --- */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: 60px;
+        bottom: 0;
+        top: auto;
+        flex-direction: row;
+        border-right: none;
+        border-top: 1px solid var(--border);
+        padding: 0;
+    }
+
+    .sidebar-logo {
+        display: none; /* Hide logo in bottom nav */
+    }
+
+    .sidebar-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        width: 100%;
+    }
+
+    .nav-item {
+        margin-bottom: 0;
+        flex-direction: column;
+        font-size: 0.7rem;
+        padding: 8px 0;
+    }
+
+    .sidebar-footer {
+        display: none; /* Profile accessed via dashboard or top-bar */
+    }
+
+    .main-content {
+        margin-left: 0;
+        margin-bottom: 70px; /* Space for bottom nav */
+        width: 100%;
+        padding: 20px;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .top-bar-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Grids to 1 column */
+    .dashboard-grid, .admin-stats-grid, .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tables to Scrollable */
+    .expense-list-container {
+        overflow-x: auto;
+    }
+
+    .admin-table {
+        font-size: 0.8rem;
+    }
+}
+
+/* --- Extra Small Devices (under 480px) --- */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 25px 15px;
+    }
+
+    .card h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn-main, .btn-primary {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | LifeOS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-body admin-theme">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">Life<span>OS</span> Admin</div>
+        <nav class="sidebar-nav">
+            <a href="/admin.html" class="nav-item active">Overview</a>
+            <a href="#users" class="nav-item">User Management</a>
+            <a href="#payments" class="nav-item">Revenue Logs</a>
+            <a href="#system" class="nav-item">System Health</a>
+            <a href="/dashboard.html" class="nav-item">Switch to App</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Platform Overview</h1>
+            <div class="admin-badge">Super Admin</div>
+        </header>
+
+        <!-- Stats Grid -->
+        <section class="admin-stats-grid">
+            <div class="card stat-card">
+                <h3>Total Users</h3>
+                <h2 id="total-users-count">0</h2>
+                <p class="trend positive">+12% this week</p>
+            </div>
+            <div class="card stat-card">
+                <h3>Monthly Revenue</h3>
+                <h2 id="total-revenue">₹0.00</h2>
+                <p>Cashfree settled</p>
+            </div>
+            <div class="card stat-card">
+                <h3>R2 Storage Used</h3>
+                <h2 id="total-r2-usage">0 GB</h2>
+                <p>Cloudflare R2 Bucket</p>
+            </div>
+            <div class="card stat-card">
+                <h3>Active SOS</h3>
+                <h2 id="active-sos-count" class="danger-text">0</h2>
+                <p>Emergency alerts</p>
+            </div>
+        </section>
+
+        <!-- Main Admin Panels -->
+        <section class="admin-panels">
+            <!-- User Table -->
+            <div class="card table-card">
+                <div class="card-header">
+                    <h3>Recent Users</h3>
+                    <input type="text" id="user-search" placeholder="Search by email...">
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Plan</th>
+                            <th>Joined</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-user-list">
+                        <!-- Loaded via admin.js -->
+                        <tr><td colspan="5">Loading user data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Recent Alerts -->
+            <div class="card alerts-card">
+                <h3>Critical System Logs</h3>
+                <div id="system-logs" class="logs-container">
+                    <p class="log-entry">System check: All systems operational.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Admin Action Modal -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="admin-modal-title">Edit User</h3>
+            <div id="admin-modal-body"></div>
+            <div class="modal-actions">
+                <button class="btn-outline" id="close-admin-modal">Close</button>
+                <button class="btn-danger" id="suspend-user-btn">Suspend User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/admin.js"></script>
+    <script>
+        // Critical Security Check: Redirect if not Admin
+        window.onload = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user || user.user_metadata.role !== 'admin') {
+                alert("Unauthorized Access!");
+                window.location.href = '/dashboard.html';
+            }
+        };
+    </script>
+</body>
+</html>

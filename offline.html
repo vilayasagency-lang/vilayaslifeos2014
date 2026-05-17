@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline | LifeOS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .offline-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            background-color: #0f172a;
+            color: white;
+        }
+        .offline-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: #3b82f6;
+        }
+        .retry-btn {
+            margin-top: 25px;
+            padding: 12px 30px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📡❌</div>
+        <h1>You're Offline</h1>
+        <p>It seems you lost your connection. LifeOS works best when you're online to sync your vault and data.</p>
+        
+        <button class="retry-btn" onclick="window.location.reload()">Try Again</button>
+        
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+            Some features like your <b>Encrypted Vault</b> require an active connection for security.
+        </p>
+    </div>
+
+    <script>
+        // Check if back online automatically
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

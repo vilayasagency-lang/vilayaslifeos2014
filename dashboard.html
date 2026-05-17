@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | LifeOS</title>
+    
+    <!-- PWA & Theme -->
+    <meta name="theme-color" content="#0f172a">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            Life<span>OS</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard.html" class="nav-item active">
+                <i class="icon-dashboard"></i> <span>Dashboard</span>
+            </a>
+            <a href="/vault.html" class="nav-item">
+                <i class="icon-vault"></i> <span>Secure Vault</span>
+            </a>
+            <a href="/reminders.html" class="nav-item">
+                <i class="icon-reminders"></i> <span>Reminders</span>
+            </a>
+            <a href="/family.html" class="nav-item">
+                <i class="icon-family"></i> <span>Family Hub</span>
+            </a>
+            <a href="/expenses.html" class="nav-item">
+                <i class="icon-expenses"></i> <span>Expenses</span>
+            </a>
+            <a href="/memories.html" class="nav-item">
+                <i class="icon-memories"></i> <span>Memories</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <a href="/profile.html" class="nav-item">
+                <i class="icon-user"></i> <span id="user-name-display">Profile</span>
+            </a>
+            <button id="logout-btn" class="btn-logout">Logout</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 id="welcome-text">Hello, User</h1>
+            <div class="top-bar-actions">
+                <span id="date-display">Today, 24 Oct</span>
+                <button class="btn-premium" onclick="location.href='/subscription.html'">Go Pro</button>
+            </div>
+        </header>
+
+        <section class="dashboard-grid">
+            <!-- Summary Cards -->
+            <div class="card card-reminders">
+                <h3>Upcoming Reminders</h3>
+                <div id="quick-reminders-list">Loading...</div>
+            </div>
+
+            <div class="card card-expenses">
+                <h3>Monthly Spend</h3>
+                <h2 id="total-expense">₹0.00</h2>
+                <a href="/expenses.html">View Details</a>
+            </div>
+
+            <div class="card card-vault">
+                <h3>Vault Status</h3>
+                <p><span id="vault-count">0</span> Files Securely Stored</p>
+                <button onclick="location.href='/vault.html'" class="btn-small">Open Vault</button>
+            </div>
+
+            <div class="card card-family">
+                <h3>Family Connectivity</h3>
+                <p id="family-status">No active alerts</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Scripts -->
+    <script src="/js/supabase-config.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script>
+        // Quick session check
+        window.onload = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                window.location.href = '/login.html';
+            } else {
+                document.getElementById('welcome-text').innerText = `Hello, ${user.user_metadata.full_name || 'User'}`;
+            }
+        };
+    </script>
+</body>
+</html>
